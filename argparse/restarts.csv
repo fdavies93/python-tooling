@@ -1,0 +1,46 @@
+server_id,timestamp,cause
+0,426,Uses a hard drive.
+1,2034,Nvidia driver failure.
+2,3067,AC set too high.
+2,5477,AC set too high.
+0,5821,Mandatory windows update.
+2,6019,Cat on keyboard.
+3,11220,Uses a hard drive.
+4,14689,Mandatory windows update.
+4,19042,Uses a hard drive.
+1,22029,AC set too high.
+2,24961,Mandatory windows update.
+2,25467,Nvidia driver failure.
+4,28884,Mandatory windows update.
+4,29081,Cat on keyboard.
+2,29149,Mandatory windows update.
+2,29637,Mandatory windows update.
+4,30598,Solar flare caused bit flip.
+3,31713,Nvidia driver failure.
+2,33104,Solar flare caused bit flip.
+4,38516,Uses a hard drive.
+4,38627,AC set too high.
+2,43551,Nvidia driver failure.
+2,44361,Cat on keyboard.
+1,48612,Uses a hard drive.
+1,52260,Solar flare caused bit flip.
+3,53669,AC set too high.
+3,56503,AC set too high.
+3,58605,Splines failed to reticulate.
+4,59427,AC set too high.
+2,60137,AC set too high.
+3,60787,AC set too high.
+4,61697,Splines failed to reticulate.
+4,64014,Cat on keyboard.
+3,65488,Splines failed to reticulate.
+3,66774,AC set too high.
+0,68535,Solar flare caused bit flip.
+2,69165,Solar flare caused bit flip.
+2,69650,AC set too high.
+1,81645,Mandatory windows update.
+0,82025,Uses a hard drive.
+4,83437,Uses a hard drive.
+0,83506,Cat on keyboard.
+4,83739,Mandatory windows update.
+0,84777,AC set too high.
+3,86120,Nvidia driver failure.
