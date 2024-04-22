@@ -13,7 +13,7 @@ from csv import writer
 # 1: Get the username (account.username) and append it at the top of the output for the timeline in format "## @{username}"
 # 2: We want to be able to poll our chosen mastodon server for new messages at some time interval. using time.sleep adjust the main function to poll at a interval set by the user. Use console.clear to clear the screen between users. See if you can figure out how to make it seamless!
 # 3: add a --format json option to output the bare content of a JSON response from the Mastodon API. Use json.dumps with the indent option to render the response in a readable manner. We can then pipe this into a log.json file using > from the cli. 
-# 4: add an option to output rows of CSV data by using --format csv and the csv.writer class. Rows are in the format [id, username, created_at, content], where content is in markdown format. You do not need to have a header (but can add an option for one if you like). Write this to stdout by attaching csv.writer to sys.stdout. Unlike --dump this should work with polling. Also, change the --format json command to use sys.stdout.write
+# 4: add an option to output rows of CSV data by using --format csv and the csv.writer class. Rows are in the format [id, username, created_at, content], where content is in markdown format. You do not need to have a header (but can add an option for one if you like). Write this to stdout by attaching csv.writer to sys.stdout. Also change the --format json command to use sys.stdout.write if you previously used print()
 
 def get_timeline(server: str):
     uri = f"https://{server}/api/v1/timelines/public"
@@ -26,7 +26,7 @@ def render_message(message: dict) -> str:
 
     # 1: Get the username (account.username) and append it at the top of the output for the timeline in format "## @{username}"
     md = "\n\n".join((
-        html2text(html)
+        html2text(html),
     ))
 
     return md    
@@ -51,10 +51,9 @@ def main():
     parsed = parser.parse_args()
 
     tl = get_timeline(parsed.server)
-    if parsed.format is None: pprint_timeline(tl, console)
+    pprint_timeline(tl, console)
     # 3: add a --format json option to output the bare content of a JSON response from the Mastodon API. Use json.dumps with the indent option to render the response in a readable manner. We can then pipe this into a log.json file using > from the cli. 
     # 4
-    else: return
 
     # 2: We want to be able to poll our chosen mastodon server for new messages at some time interval. using time.sleep adjust the main function to poll at a interval set by the user. Use console.clear to clear the screen between users. See if you can figure out how to make it seamless
     # 3
