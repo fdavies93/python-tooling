@@ -6,6 +6,7 @@ import json
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
+from typing import Union
 from datetime import datetime
 
 ENCODING = "utf-8"
@@ -34,15 +35,21 @@ class Status:
     timestamp: str
     username: str
 
-def plot_timestamps(statuses: list[Status]):
+def plot_timestamps(statuses: list[Status], image_path: Union[str,None]):
     ts = np.array([status.timestamp for status in statuses])
     plt.hist(ts)
-    plt.show()
+    if image_path is None:
+        plt.show()
+    else:
+        plt.savefig(image_path)
 
-def plot_users(statuses: list[Status]):
+def plot_users(statuses: list[Status], image_path: Union[str,None]):
     users = np.array([status.username for status in statuses])
     plt.hist(users)
-    plt.show()
+    if image_path is None:
+        plt.show()
+    else:
+        plt.savefig(image_path)
 
 def simplify_timestamp(timestamp: str) -> str:
     dt = datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%S.%fZ")
@@ -90,6 +97,7 @@ def main():
     parser.add_argument("filename")
     parser.add_argument("format", choices=("json","csv"))
     parser.add_argument("plot", choices=("users","timestamps"))
+    parser.add_argument("--img")
 
     parsed = parser.parse_args()
 
@@ -108,9 +116,9 @@ def main():
     statuses = dedupe_statuses(statuses)
 
     if parsed.plot == "users":
-        plot_users(statuses)
+        plot_users(statuses, parsed.img)
     elif parsed.plot == "timestamps":
-        plot_timestamps(statuses)
+        plot_timestamps(statuses, parsed.img)
 
 if __name__ == "__main__":
     main()
