@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+import sys
 from sys import stdin
 from dataclasses import dataclass
 import json
@@ -6,6 +7,13 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
+
+ENCODING = "utf-8"
+
+if sys.platform == "win32":
+    ENCODING = "utf-16"
+else:
+    sys.stdin.reconfigure(encoding="utf-8")
 
 # CONCEPTS:
 # dataclasses
@@ -44,6 +52,8 @@ def read_csv(input_stream) -> list[Status]:
     reader = csv.reader(input_stream)
     statuses = []
     for ln in reader:
+        # deal with ridiculous Windows console behaviours
+        if len(ln) == 0: continue
         statuses.append(Status(
         int(ln[0]),
         simplify_timestamp(ln[2]),
@@ -87,7 +97,7 @@ def main():
     if parsed.filename == "-":
         input_stream = stdin
     else:
-        input_stream = open(parsed.filename, "r")
+        input_stream = open(parsed.filename, "r", encoding=ENCODING)
 
     statuses = []
     if parsed.format == "json":

@@ -3,10 +3,19 @@ from argparse import ArgumentParser
 from html2text import html2text
 from rich.markdown import Markdown
 from rich.console import Console
+import sys
 from sys import stdout
 import time
 import json
 from csv import writer
+
+ENCODING = "utf-8"
+
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding='utf-16')
+    ENCODING = "utf-16"
+else:
+    sys.stdout.reconfigure(encoding='utf-8')
 
 # you can get an example of JSON format by going to mastodon.social/api/v1/timelines/public in your browser
 
