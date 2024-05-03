@@ -81,7 +81,7 @@ def main():
 
     for i in range(times):
         print(f"Pulling request {i+1}/{times}",end="\r")
-        result = subprocess.run(["python","pull.py","mastodon.social","--format", "csv"], stdout=subprocess.PIPE)
+        result = subprocess.run(["python","pull.py","mastodon.social","--format", "csv"], stdout=subprocess.PIPE, executable=sys.executable)
         rows = read_csv(StringIO(result.stdout.decode(ENCODING)))
         statuses.extend(rows)
         if not i == (times - 1):

@@ -16,6 +16,8 @@ if sys.platform == "win32":
 else:
     sys.stdin.reconfigure(encoding="utf-8")
 
+    
+
 # CONCEPTS:
 # dataclasses
 # reading from CLI pipes (stdin) or files; convention
